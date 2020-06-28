@@ -19,7 +19,7 @@
     <ul>
         {% for entry in entries %}
             <li>
-                <p>{{ entry.date_added|date:'M d, Y g:i a' }}</p>
+                <p>{{ entry.date_added|date:'M d, Y g:i A' }}</p>
                 <p>{{ entry.text|linebreaks }}</p>
             </li>
         {% empty %}
@@ -28,5 +28,7 @@
             </li>
         {% endfor %}
     </ul>
+    <br>
+    <p style="font-size:85%;">*Times are in EST</p>
 
 {% endblock content %}
