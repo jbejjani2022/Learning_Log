@@ -19,7 +19,7 @@
     <ul>
         {% for entry in entries %}
             <li>
-                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+                <p>{{ entry.date_added|date:'M d, Y g:i a' }}</p>
                 <p>{{ entry.text|linebreaks }}</p>
             </li>
         {% empty %}
