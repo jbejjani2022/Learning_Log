@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'US/Eastern' # Changed TZ to EST for purposes of this project
+TIME_ZONE = 'US/Eastern'  # Changed TZ to EST for purposes of this project
 
 USE_I18N = True
 
