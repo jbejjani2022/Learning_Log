@@ -55,7 +55,7 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
     topic = Topic.objects.get(id=topic_id)
-
+    check_topic_owner(request, topic)
     if request.method != 'POST':
         # No data submitted; create a blank form.
         form = EntryForm()
@@ -65,7 +65,6 @@ def new_entry(request, topic_id):
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
-            check_topic_owner(request, topic)
             new_entry.save()
             return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic_id]))
 
