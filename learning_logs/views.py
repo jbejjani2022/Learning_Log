@@ -92,6 +92,16 @@ def edit_entry(request, entry_id):
     return render(request, 'learning_logs/edit_entry.html', context)
 
 
+@login_required
+def delete_entry(request, entry_id):
+    """Delete an existing entry."""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+    check_topic_owner(request, topic)  # if you are not owner, get a 404
+    entry.delete()
+    return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
+
+
 def check_topic_owner(request, topic):
     """Make sure the topic belongs to the current user"""
     if topic.owner != request.user:

@@ -23,4 +23,7 @@ urlpatterns = [
 
     # Page for editing entry
     path('edit_entry/<int:entry_id>', views.edit_entry, name='edit_entry'),
+
+    # Page for deleting entry
+    path('delete_entry/<int:entry_id>', views.delete_entry, name='delete_entry'),
 ]
