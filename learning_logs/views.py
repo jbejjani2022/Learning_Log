@@ -98,8 +98,14 @@ def delete_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
     check_topic_owner(request, topic)  # if you are not owner, get a 404
-    entry.delete()
-    return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
+    if request.method != 'POST':
+        # Initial request; direct user to a confirmation page
+        context = {'entry': entry, 'topic': topic}
+        return render(request, 'learning_logs/delete_entry.html', context)
+    else:
+        # Delete confirmed with POST; delete entry
+        entry.delete()
+        return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
 
 
 def check_topic_owner(request, topic):

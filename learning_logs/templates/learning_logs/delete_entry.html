@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block title %}Learning Log - Delete Entry{% endblock title %}
+
+{% block content %}
+
+    <p><a href="{% url 'learning_logs:topic' topic.id %}">back</a></p>
+
+    <form method='post'>
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ entry }}"?</p>
+        <input type="submit" value="Delete">
+    </form>
+
+{% endblock content %}
