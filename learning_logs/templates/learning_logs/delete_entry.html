@@ -17,8 +17,6 @@
         {% buttons %}
             <button name="submit" class="btn btn-primary">Delete</button>
         {% endbuttons %}
-
-        <input type="hidden" name="next" value="{% url 'learning_logs:topic' topic.id %}" />
     </form>
 
     <p><a href="{% url 'learning_logs:topic' topic.id %}">cancel</a></p>
