@@ -15,13 +15,13 @@
     {% for entry in entries %}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>
+                <h4>
                     {{ entry.date_added|date:'M d, Y g:i A' }}
                     <small>
                         <a href="{% url 'learning_logs:edit_entry' entry.id %}">edit</a> -
                         <a href="{% url 'learning_logs:delete_entry' entry.id %}">delete</a>
                     </small>
-                </h3>
+                </h4>
             </div>
             <div class="panel-body">
                 {{ entry.text|linebreaks }}
@@ -30,7 +30,6 @@
 
     {% empty %}
         There are no entries for this topic yet.
-
     {% endfor %}
 
     <br>
