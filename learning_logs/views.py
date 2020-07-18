@@ -108,6 +108,21 @@ def delete_entry(request, entry_id):
         return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
 
 
+@login_required
+def delete_topic(request, topic_id):
+    """Delete an existing entry."""
+    topic = get_object_or_404(Topic, id=topic_id)
+    check_topic_owner(request, topic)  # if you are not owner, get a 404
+
+    if request.method == 'POST':
+        # Delete confirmed with POST; delete entry
+        topic.delete()
+        return HttpResponseRedirect(reverse('learning_logs:topics'))
+
+    context = {'topic': topic}
+    return render(request, 'learning_logs/delete_topic.html', context)
+
+
 def check_topic_owner(request, topic):
     """Make sure the topic belongs to the current user"""
     if topic.owner != request.user:
